@@ -1,0 +1,1 @@
+<button class="btn py-2 mx-2 btn-{{ $xyz }}">{{ $title }}</button>
