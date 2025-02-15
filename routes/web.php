@@ -42,3 +42,9 @@ Route::get('session', function(){
 });
 
 Route::get('/test2', [PostController::class, 'test'])->name('test2');
+
+
+Route::get('/logout', function(){
+    cache()->flush();
+    auth()->logout();
+});
