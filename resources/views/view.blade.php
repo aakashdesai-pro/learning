@@ -13,10 +13,11 @@
         'surat'
     ];
 @endphp
+<h1>Hello, {{ session()->get('username') }}</h1>
 <form action="{{ route('view') }}" method="post" class="p-5">
     @csrf
     @method('post')
-    <x-forms.input id="name" labelTitle="Name" type="text" name="$name" required/>
+    <x-forms.input id="name" labelTitle="Name" type="text" name="name" required/>
     <x-forms.input id="email" labelTitle="email" type="text" name="email"/>
     <x-forms.textarea id="content" labelTitle="content" name="content"/>
     <x-forms.select id="state" labelTitle="state" name="state" :options="$states"/>

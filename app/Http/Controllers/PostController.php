@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormSubmitRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
+use App\Rules\MinimumPostRule;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class PostController extends Controller
 {
@@ -21,10 +26,7 @@ class PostController extends Controller
         return UserResource::make($user->load('posts'));
     }
 
-    public function test(Request $request){
-        $request->validate([
-            'name' => ['required','min:3'],
-            'email' => ['required', 'email']
-        ]);
+    public function test(FormSubmitRequest $request){
+        dd('submitted successfully');        
     }
 }
