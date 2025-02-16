@@ -100,3 +100,38 @@ Route::get('/array', function(){
 
     echo '<pre>'; print_r($users); exit;
 });
+
+
+Route::get('/collection', function(){
+    $users = [
+        [
+            'name' => 'Ramesh',
+            'mobile' => 1231231231,
+            'age' => 19
+        ],
+        [
+            'name' => 'Jayesh',
+            'mobile' => 1231231232,
+            'age' => 30
+        ],
+        [
+            'name' => 'Jayesh',
+            'mobile' => 1231231239,
+            'age' => 21
+        ],
+        [
+            'name' => 'Vijay',
+            'mobile' => 1231231235,
+            'age' => 16
+        ],
+        [
+            'name' => 'Suresh',
+            'mobile' => 1231231233,
+            'age' => 45
+        ],
+    ];
+
+    $users = collect($users);
+
+    echo '<pre>'; print_r($users->where('age', '>=', 30)); exit;
+});
