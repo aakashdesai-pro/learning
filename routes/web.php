@@ -48,3 +48,55 @@ Route::get('/logout', function(){
     cache()->flush();
     auth()->logout();
 });
+
+Route::get('/array', function(){
+    $users = [
+        [
+            'name' => 'Ramesh',
+            'mobile' => 1231231231
+        ],
+        [
+            'name' => 'Jayesh',
+            'mobile' => 1231231232,
+        ],
+        [
+            'name' => 'Jayesh',
+            'mobile' => 1231231239,
+        ],
+        [
+            'name' => 'Vijay',
+            'mobile' => 1231231235,
+        ],
+        [
+            'name' => 'Suresh',
+            'mobile' => 1231231233
+        ],
+    ];
+
+    // is_array
+    // if (is_array($users)) {
+        
+    // }
+
+    // array_key_exists
+    // if (array_key_exists(3, $users)) {
+    //     if (array_key_exists('name', $users[3])) {
+    //         echo '<pre>'; print_r($users[3]['name']); exit;
+    //     }
+    // }
+
+    // in_array
+    // if (in_array('Suresh', $users[3])) {
+    //     echo '<pre>'; print_r('yes'); exit;
+    // }
+
+    //array filter
+    // $users = array_filter($users, function($user){
+    //     return $user['name'] == 'Jayesh';
+    // });
+
+    // if (count($users) > 0) {
+    // }
+
+    echo '<pre>'; print_r($users); exit;
+});

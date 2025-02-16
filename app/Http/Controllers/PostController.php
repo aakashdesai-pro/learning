@@ -44,4 +44,13 @@ class PostController extends Controller
             email: 'asdasd@asda.da',
         );
     }
+
+    public function register(Request $request){
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'client'
+        ]);
+    }
 }
