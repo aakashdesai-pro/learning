@@ -3,8 +3,9 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 
 Route::group(['middleware' => ['auth', 'is_having_role:admin']], function(){
     Route::get('/posts', [PostController::class, 'posts'])->name('post');
@@ -143,4 +144,15 @@ Route::group(['prefix' => 'auth'], function(){
     Route::get('/login', [AuthController::class, 'login']);
     Route::get('/register', [AuthController::class, 'register']);
     Route::get('/forgot-password', [AuthController::class, 'forgotPassword']);
+});
+
+Route::get('storage123', function(){
+    $userId = User::find(1)->id;
+    Storage::disk('public')->put($userId.'/demo.jpg', file_get_contents(public_path('images/1.jpg')));
+    // Storage::disk('public')->put('text/text1.txt', "This is demo text.");
+    
+    // $file = Storage::disk('public')->get('text/text1.txt');
+    // Storage::download('text/text1.txt', 'testname.txt');
+    // if (Storage::disk('public')->exists('test/text1.txt')) {
+    // }
 });
