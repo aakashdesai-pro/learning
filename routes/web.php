@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AuthController;
 
 Route::group(['middleware' => ['auth', 'is_having_role:admin']], function(){
     Route::get('/posts', [PostController::class, 'posts'])->name('post');
@@ -134,4 +135,12 @@ Route::get('/collection', function(){
     $users = collect($users);
 
     echo '<pre>'; print_r($users->where('age', '>=', 30)); exit;
+});
+
+
+
+Route::group(['prefix' => 'auth'], function(){
+    Route::get('/login', [AuthController::class, 'login']);
+    Route::get('/register', [AuthController::class, 'register']);
+    Route::get('/forgot-password', [AuthController::class, 'forgotPassword']);
 });
