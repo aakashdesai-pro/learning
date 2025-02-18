@@ -2,7 +2,7 @@
     <label for="{{ $id }}">{{ $labelTitle }} {{ $attributes->has('required') ? '*' : '' }}</label>
     <select class="form-control" name="{{ $name }}" id="{{ $id }}">
         @foreach ($options as $key => $option)
-            <option value="{{ $key }}" @selected(old($name) == $key)>{{ $option }}</option>
+            <option value="{{ $key }}" @selected(old($name) == $key || ($value ?? '') == $key)>{{ $option }}</option>
         @endforeach
     </select>
     @error($name)

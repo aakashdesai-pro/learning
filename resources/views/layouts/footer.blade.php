@@ -1,1 +1,1 @@
-<h1>This is footer</h1>
+<h1>{{ trans('lang.this_is_footer') }}</h1>

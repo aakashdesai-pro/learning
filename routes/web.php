@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['auth', 'is_having_role:admin']], function(){
     Route::get('/posts', [PostController::class, 'posts'])->name('post');
@@ -29,7 +30,7 @@ Route::get('/lg', function(){
     echo "redirected";
 })->name('login');
 
-Route::view('/view', 'view');
+Route::view('/view', 'view')->middleware('locale');
 Route::post('/view', [PostController::class, 'test'])->name('view');
 
 Route::get('session', function(){
@@ -156,3 +157,31 @@ Route::get('storage123', function(){
     // if (Storage::disk('public')->exists('test/text1.txt')) {
     // }
 });
+
+Route::group(['middleware' => ['locale']], function(){
+    Route::get('/language', function(){
+        return view('pages.language');
+    });
+    
+    Route::get('/language3', function(){
+        return view('pages.language');
+    });
+    
+    Route::get('/language4', function(){
+        return view('pages.language');
+    });
+    
+    Route::get('/language5', function(){
+        return view('pages.language');
+    });
+    
+    Route::get('/language2', function(){
+        return view('pages.language');
+    });
+});
+
+
+Route::post('/change-language', function(Request $request){
+    session()->put('locale', $request->locale);
+    return back();
+})->name('change-language');
