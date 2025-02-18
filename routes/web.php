@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 Route::group(['middleware' => ['auth', 'is_having_role:admin']], function(){
     Route::get('/posts', [PostController::class, 'posts'])->name('post');
@@ -185,3 +186,14 @@ Route::post('/change-language', function(Request $request){
     session()->put('locale', $request->locale);
     return back();
 })->name('change-language');
+
+Route::get('mailer', function(){
+    $name = "Aakash";
+    $otp = 1234;
+    // return new App\Mail\Auth\RegistrationOtp($name, $otp);
+    Mail::to('aakashdesai.pro@gmail.com')->send(new App\Mail\Auth\RegistrationOtp($name, $otp));
+
+    Mail::raw('hello', function($mail){
+        $mail->to('aakashdesai.pro@gmail.com');
+    });
+});
