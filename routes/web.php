@@ -197,3 +197,22 @@ Route::get('mailer', function(){
         $mail->to('aakashdesai.pro@gmail.com');
     });
 });
+
+Route::get('process', function(){
+    // $output = '';
+    // exec('php artisan make:controller TestController', $output);
+    // print_r($output);
+
+    // $output=null;
+    // $retval=null;
+    // exec('whoami', $output, $retval);
+    // print_r($output);
+
+
+    $result = Illuminate\Support\Facades\Process::run('ls');
+    if($result->successful()){
+        return $result->output();
+    } else {
+        $result->errorOutput();
+    }
+});
