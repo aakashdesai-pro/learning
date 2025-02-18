@@ -216,3 +216,10 @@ Route::get('process', function(){
         $result->errorOutput();
     }
 });
+
+
+Route::get('/job', function(){
+    $count = 50;
+    App\Jobs\DummyUserInsertJob::dispatch($count);
+    //run `php artisan queue:work OR php artisan queue:listen`
+});
