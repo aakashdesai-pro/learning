@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\IsHavingRole;
 use App\Http\Middleware\Locale;
+use App\Http\Middleware\RateLimiter;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append(RateLimiter::class);
         $middleware->alias([
             'is_having_role' => IsHavingRole::class,
             'locale' => Locale::class,
