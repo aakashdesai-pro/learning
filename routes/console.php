@@ -1,4 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use App\Console\Commands\PrintLog;
+use Illuminate\Support\Facades\Schedule;
+
+
+Schedule::command(PrintLog::class)->everyFiveSeconds();
